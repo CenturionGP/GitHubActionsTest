@@ -1,6 +1,6 @@
 name: CMake build and unit test
 
-on: [push, pull_request]
+on: pull_request
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -36,16 +36,19 @@ jobs:
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
       
     - name: Test on Windows
+      # test execution on windows-latest
       id: windows
       if: matrix.platform == 'windows-latest'
       run: ./build/${{env.BUILD_TYPE}}/test.exe
 
     - name: Test on ubuntu
+    # test execution on ubuntu-latest
       id: ubuntu
       if: matrix.platform == 'ubuntu-latest'
       run: ./build/test
 
-    - name: Test on Macos
+    - name: Test on macos
+    # test execution on macos-latest
       id: macos
       if: matrix.platform == 'macos-latest'
       run: ./build/test
