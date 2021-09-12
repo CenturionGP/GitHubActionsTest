@@ -43,11 +43,13 @@ jobs:
     - name: Test on Linux
       id: linux
       if: steps.windows.conclution == 'skipped' && ${{matrix.platform == 'linux-latest'}}
-      run: ${{github.workspace}}/build/test
+      run: |
+            cd ${{github.workspace}}/build/test
+            ./test
 
-    - name: Test on Macos
-      id: Mac
-      run: echo 'test execute on Macos'
+    # - name: Test on Macos
+    #   id: Mac
+    #   run: echo 'test execute on Macos'
 
     #- name: Test
     #  working-directory: ${{github.workspace}}/build
