@@ -42,13 +42,17 @@ jobs:
 
     - name: Test on Linux
       id: linux
-      if: matrix.platform == 'linux-latest'
+      if: matrix.platform == 'ubuntu-latest'
       run: ./build/test
 
     - name: Test on Macos
       id: Mac
       if: matrix.platform == 'macos-latest'
-      run: echo 'test execute on Macos'
+      run: |
+            echo 'test execute on Macos'
+            pwd
+            ls
+            ./build/test
 
     #- name: Test
     #  working-directory: ${{github.workspace}}/build
