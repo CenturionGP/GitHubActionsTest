@@ -18,7 +18,7 @@ jobs:
     runs-on: ${{matrix.platform}}
 
     steps:    
-    - name: Checkout
+    - name: Checkout submodule
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
@@ -42,11 +42,8 @@ jobs:
 
     - name: Test on Linux
       id: linux
-      if: steps.windows.conclution == 'skipped' && ${{matrix.platform == 'linux-latest'}}
-      run: |
-            ls
-            pwd
-            ./build/test
+      if: steps.windows.conclusion == 'skipped' && matrix.platform == 'linux-latest'
+      run: ./build/test
 
     # - name: Test on Macos
     #   id: Mac
