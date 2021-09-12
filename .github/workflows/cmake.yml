@@ -38,21 +38,17 @@ jobs:
     - name: Test on Windows
       id: windows
       if: matrix.platform == 'windows-latest'
-      run: ${{github.workspace}}/build/${{env.BUILD_TYPE}}/test.exe
+      run: ./build/${{env.BUILD_TYPE}}/test.exe
 
-    - name: Test on Linux
-      id: linux
+    - name: Test on ubuntu
+      id: ubuntu
       if: matrix.platform == 'ubuntu-latest'
       run: ./build/test
 
     - name: Test on Macos
-      id: Mac
+      id: macos
       if: matrix.platform == 'macos-latest'
-      run: |
-            echo 'test execute on Macos'
-            pwd
-            ls
-            ./build/test
+      run: ./build/test
 
     #- name: Test
     #  working-directory: ${{github.workspace}}/build
